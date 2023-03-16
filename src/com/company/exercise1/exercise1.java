@@ -2,7 +2,6 @@ package com.company.exercise1;
 import java.util.Scanner;
 
 public class exercise1 {
-    public static int testVariable = 45459;
     public static void ConnectFourRun() {
         Runtime();
     }
