@@ -31,6 +31,7 @@ public class exercise1 {
                 System.out.println("Player O!");
             printBoard();
             System.out.print("Enter slot: ");
+            System.out.println();
             String slotString = myObj.nextLine(); // instantiate scanner
             int slotInt = Integer.parseInt(slotString); // converts String to Int
             System.out.println("Slot used: " + slotInt);
@@ -40,7 +41,6 @@ public class exercise1 {
                 gameActive = false;
             }
             roundCounter++;
-            System.out.println();
         }
     }
 
