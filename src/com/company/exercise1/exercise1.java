@@ -21,7 +21,7 @@ public class exercise1 {
 
         Scanner myObj = new Scanner(System.in);
 
-        while (gameActive) {
+        while (gameActive) { // game loop
             if (roundCounter == 42)
                 gameActive = false; // if game is over
             System.out.println("Round: " + roundCounter);
@@ -40,6 +40,7 @@ public class exercise1 {
                 gameActive = false;
             }
             roundCounter++;
+            System.out.println();
         }
     }
 
