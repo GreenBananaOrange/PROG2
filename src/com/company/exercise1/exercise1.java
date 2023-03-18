@@ -20,25 +20,25 @@ public class exercise1 {
 
     public static void Runtime(){
 
-        while (gameActive) { // game loop
+        while (true) { // game loop
             if (roundCounter == 42)
                 gameActive = false; // if game is over
-            System.out.println("Round: " + roundCounter);
+            // System.out.println("Round: " + roundCounter);
             if (roundCounter % 2 != 0)
                 System.out.println("Player X!");
             else
                 System.out.println("Player O!");
             printBoard();
+            if (isVerticalWinProof1()){
+                System.out.println("Game Over!");
+                break;
+            }
             System.out.print("Enter slot: ");
             System.out.println();
             String slotString = myObj.nextLine(); // instantiate scanner
             int slotInt = Integer.parseInt(slotString); // converts String to Int
-            System.out.println("Slot used: " + slotInt);
+            // System.out.println("Slot used: " + slotInt);
             getInput(slotInt);
-            if (isVerticalWinProof1()){
-                System.out.println("Game Over!");
-                gameActive = false;
-            }
             roundCounter++;
         }
     }
@@ -55,7 +55,6 @@ public class exercise1 {
             if (i == 0) {
                 System.out.println("Ungültige Eingabe! Bitte wiederholen!");
                 roundCounter--;
-
                 String slotString = myObj.nextLine(); // instantiate scanner
                 int slotInt = Integer.parseInt(slotString); // converts String to Int
                 System.out.println("Slot used: " + slotInt);
@@ -77,16 +76,49 @@ public class exercise1 {
     }
 
     public static boolean isVerticalWinProof1() {
-        String[] proofArray = {".", ",", "!", "?"};
-        for (int coloumn = 0; coloumn < 6; coloumn++) {
-            for (int line = 3; line >= 0; line--) {
-                if (placements[coloumn][line] != ".")
-                    proofArray[line] = "someone"; // muss verbessert werden!!
-            }
-            if (proofArray[0] == proofArray[1] && proofArray[0] == proofArray[2] && proofArray[0] == proofArray[3]) { // if 4 line exists
-                return true;
+        boolean thereIsAWinner = false;
+        for (int spalte = 0; spalte <= 6; spalte++) {
+            for (int zeileReal = 0; zeileReal <= 2; zeileReal++) { // counts the real lines up to the line of index 2
+                switch (zeileReal) {
+                    case 0:
+                        boolean possibilityOne = true;
+                        String letterAtPos5 = placements[spalte][5];
+                        for (int i = 4; i >= 2; i--) { // 3 weitere oberhalb von pos. 5
+                            if (letterAtPos5 != placements[spalte][i]) {
+                                possibilityOne = false;
+                                break;
+                            }
+                        }
+                        if (possibilityOne  && letterAtPos5 != ".")
+                            thereIsAWinner = true; // gets the function the result to return
+                        break;
+                    case 1:
+                        boolean possibilityTwo = true;
+                        String letterAtPos4 = placements[spalte][4];
+                        for (int i = 3; i >= 1; i--) {
+                            if (letterAtPos4 != placements[spalte][i]) {
+                                possibilityTwo = false;
+                                break;
+                            }
+                        }
+                        if (possibilityTwo && letterAtPos4 != ".")
+                            thereIsAWinner = true;
+                        break;
+                    case 2:
+                        boolean possibilityThree = true;
+                        String letterAtPos3 = placements[spalte][3];
+                        for (int i = 2; i >= 0; i--) {
+                            if (letterAtPos3 != placements[spalte][i]) {
+                                possibilityThree = false;
+                                break;
+                            }
+                        }
+                        if (possibilityThree && letterAtPos3 != ".")
+                            thereIsAWinner = true;
+                        break;
+                }
             }
         }
-        return false;
+        return thereIsAWinner; //...maybe
     }
 }
