@@ -16,10 +16,9 @@ public class exercise1 {
             {".",".",".",".",".","."},
             {".",".",".",".",".","."}
     };
+    public static Scanner myObj = new Scanner(System.in);
 
     public static void Runtime(){
-
-        Scanner myObj = new Scanner(System.in);
 
         while (gameActive) { // game loop
             if (roundCounter == 42)
@@ -56,7 +55,7 @@ public class exercise1 {
             if (i == 0) {
                 System.out.println("Ungültige Eingabe! Bitte wiederholen!");
                 roundCounter--;
-                Scanner myObj = new Scanner(System.in);
+
                 String slotString = myObj.nextLine(); // instantiate scanner
                 int slotInt = Integer.parseInt(slotString); // converts String to Int
                 System.out.println("Slot used: " + slotInt);
