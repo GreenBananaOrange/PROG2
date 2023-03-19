@@ -20,15 +20,12 @@ public class exercise1 {
     public static void Runtime(){
 
         while (true) { // game loop
-            if (roundCounter == 42)
-                gameActive = false; // if game is over
-            // System.out.println("Round: " + roundCounter);
             if (roundCounter % 2 != 0)
                 System.out.println("Player X!");
             else
                 System.out.println("Player O!");
             printBoard();
-            if (isVerticalWinProof() || isHorizontalWinProof()){
+            if (isVerticalWinProof() || isHorizontalWinProof() || isDiagonalWinProofDown() || (roundCounter == 43)){
                 System.out.println("Game Over!");
                 break;
             }
@@ -191,5 +188,25 @@ public class exercise1 {
             }
         }
         return thereIsAWinner; //...maybe
+    }
+    public static boolean isDiagonalWinProofDown() {
+        boolean thereIsAWinner = false;
+        for (int zeile = 0; zeile <= 3; zeile++) { // durchläuft iterativ die drei obersten zeilen/ebenen
+            switch (zeile) {
+                case 0:
+                    boolean possibility0 = true;
+                    String letterAtPos0 = placements[zeile][0]; // erster Wert der aktuellen zeile/ebene
+                    for (int spalte = 0; spalte <= 2; spalte++) {
+                        if (letterAtPos0 != placements[spalte + zeile][spalte]) {
+                            possibility0 = false;
+                            break;
+                        }
+                    }
+                    if (possibility0 && letterAtPos0 != ".")
+                        thereIsAWinner = true;
+                    break;
+            }
+        }
+        return thereIsAWinner;
     }
 }
