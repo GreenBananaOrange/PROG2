@@ -7,6 +7,7 @@ public class exercise1 {
     }
     public static boolean gameActive = true;
     public static int roundCounter = 1;
+    public static Scanner myObj = new Scanner(System.in);
     public static String[][] placements = {
             {".",".",".",".",".","."},
             {".",".",".",".",".","."},
@@ -16,8 +17,6 @@ public class exercise1 {
             {".",".",".",".",".","."},
             {".",".",".",".",".","."}
     };
-    public static Scanner myObj = new Scanner(System.in);
-
     public static void Runtime(){
 
         while (true) { // game loop
@@ -29,7 +28,7 @@ public class exercise1 {
             else
                 System.out.println("Player O!");
             printBoard();
-            if (isVerticalWinProof1()){
+            if (isVerticalWinProof() || isHorizontalWinProof()){
                 System.out.println("Game Over!");
                 break;
             }
@@ -42,7 +41,6 @@ public class exercise1 {
             roundCounter++;
         }
     }
-
     public static void getInput(int usedSlot) { // input is set
         for (int i = 5; i >= 0; i--) {
             if (placements[usedSlot][i] == ".") {
@@ -62,7 +60,6 @@ public class exercise1 {
             }
         }
     }
-
     public static void printBoard() {
         System.out.println("00 01 02 03 04 05 06");
         System.out.println("--------------------");
@@ -75,7 +72,81 @@ public class exercise1 {
         System.out.println("--------------------");
     }
 
-    public static boolean isVerticalWinProof1() {
+    public static boolean isHorizontalWinProof() {
+        boolean thereIsAWinner = false;
+        for (int zeileReal = 0; zeileReal <= 5; zeileReal++) {
+            for (int spalte = 0; spalte <= 3; spalte++) {
+                switch (spalte) {
+                    case 0:
+                        boolean possibilityOne = true;
+                        String letterAtPos0 = placements[0][zeileReal];
+                        for (int i = 1; i <= 3; i++) {
+                            if (letterAtPos0 != placements[i][zeileReal]) {
+                                possibilityOne = false;
+                                break;
+                            }
+                        }
+                        if (possibilityOne && letterAtPos0 != ".")
+                            thereIsAWinner = true; // gets the function the result to return
+                        break;
+                    case 1:
+                        boolean possibilityTwo = true;
+                        String letterAtPos1 = placements[1][zeileReal];
+                        for (int i = 2; i <= 4; i++) {
+                            if (letterAtPos1 != placements[i][zeileReal]) {
+                                possibilityTwo = false;
+                                break;
+                            }
+                        }
+                        if (possibilityTwo && letterAtPos1 != ".")
+                            thereIsAWinner = true;
+                        break;
+                    case 2:
+                        boolean possibilityThree = true;
+                        String letterAtPos2 = placements[2][zeileReal];
+                        for (int i = 3; i <= 5; i++) {
+                            if (letterAtPos2 != placements[i][zeileReal]) {
+                                possibilityThree = false;
+                                break;
+                            }
+                        }
+                        if (possibilityThree && letterAtPos2 != ".")
+                            thereIsAWinner = true;
+                        break;
+                    case 3:
+                        boolean possibilityFour = true;
+                        String letterAtPos3 = placements[3][zeileReal];
+                        for (int i = 4; i <= 6; i++) {
+                            if (letterAtPos3 != placements[i][zeileReal])
+                                possibilityFour = false;
+                        }
+                        if (possibilityFour && letterAtPos3 != ".")
+                            thereIsAWinner = true;
+                        break;
+                }
+
+
+                /*
+                for (int count = 0; count <= 4; count++) { // my attempt to optimize this crap
+                    boolean possibility = true;
+                    String letterAtPointedPosition = placements[count][zeileReal];
+                    for (int i = (count + 1); i <= (count + 3); i++) {
+                        if (letterAtPointedPosition != placements[i][zeileReal])
+                            possibility = false;
+                        break;
+                    }
+                    if (possibility && letterAtPointedPosition != ".") {
+                        thereIsAWinner = true;
+                    }
+                    break;
+                }
+                */
+
+            }
+        }
+        return thereIsAWinner;
+    }
+    public static boolean isVerticalWinProof() { // deutsch noch auf englisch konvertieren
         boolean thereIsAWinner = false;
         for (int spalte = 0; spalte <= 6; spalte++) {
             for (int zeileReal = 0; zeileReal <= 2; zeileReal++) { // counts the real lines up to the line of index 2
