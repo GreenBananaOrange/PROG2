@@ -20,34 +20,41 @@ public class exercise1 {
     public static void Runtime(){
 
         while (true) { // game loop
-            if (roundCounter == 42)
-                gameActive = false; // if game is over
-            // System.out.println("Round: " + roundCounter);
             if (roundCounter % 2 != 0)
-                System.out.println("Player X!");
+                coloredText("Green", "Player X!");
             else
-                System.out.println("Player O!");
+                coloredText("Green", "Player O!");
             printBoard();
-            if (isVerticalWinProof() || isHorizontalWinProof()){
+            if (isVerticalWinProof() || isHorizontalWinProof() || isDiagonalWinProofUp() || isDiagonalWinProofDown() || (roundCounter == 43)){
                 System.out.println("Game Over!");
                 break;
             }
-            System.out.print("Enter slot: ");
+            System.out.print("Einwurfsposition (slot): ");
             System.out.println();
-            String slotString = myObj.nextLine(); // instantiate scanner
-            int slotInt = Integer.parseInt(slotString); // converts String to Int
-            // System.out.println("Slot used: " + slotInt);
-            getInput(slotInt);
-            roundCounter++;
+            int slotInt = 0;
+            try {
+                String slotString = myObj.nextLine(); // instantiate scanner
+                slotInt = Integer.parseInt(slotString); // converts String to Int
+                if (slotInt < 0 || slotInt > 6) {
+                    System.out.println("Ungültige Eingabe! Bitte eine Zahl zwischen 0 und 6 Wählen!");
+                    slotString = myObj.nextLine();
+                    slotInt = Integer.parseInt(slotString); // converts String to Int
+                }
+                getInput(slotInt);
+                roundCounter++;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                coloredText("Red", "Bitte eine gültige Zahl eingeben!");
+            }
         }
     }
     public static void getInput(int usedSlot) { // input is set
         for (int i = 5; i >= 0; i--) {
             if (placements[usedSlot][i] == ".") {
                 if (roundCounter % 2 != 0)
-                    placements[usedSlot][i] = "X";
-                else
                     placements[usedSlot][i] = "O";
+                else
+                    placements[usedSlot][i] = "X";
                 break;
             }
             if (i == 0) {
@@ -191,5 +198,168 @@ public class exercise1 {
             }
         }
         return thereIsAWinner; //...maybe
+    }
+    public static boolean isDiagonalWinProofDown() {
+        boolean thereIsAWinner = false;
+        for (int i = 0; i <= 2; i++) { // verschiebung an y-achse
+            for (int apfel = 0; apfel <= 3; apfel++) { // verschiebung an der x-achse
+                // System.out.println("apfel: " + apfel); // debugging
+
+                switch (apfel) {
+                    case 0:
+                        boolean possibility0 = true;
+                        String letterAtPos0 = placements[apfel][i]; // erster Wert der aktuellen zeile/ebene
+                        // System.out.println(letterAtPos0);  // debugging
+                    /*
+                    [i][0] -> [1][0] i = 1, bleibt gleich ; spalte++;
+                        [i + spalte][spalte] -> [2][1]
+                            [i + spalte][spalte] -> [3][2]
+                                [i + spalte][spalte] -> [4][3]
+                    */
+
+                        for (int banane = 0; banane <= 3; banane++) {
+                            // System.out.println("vergleich mit " + "[" + (banane + apfel) + "]" + "[" + (banane + i) + "]");  // debugging
+                            if (letterAtPos0 != placements[banane + apfel][banane + i]) {
+                                possibility0 = false;
+                                break;
+                            }
+                        }
+                        if (possibility0 && letterAtPos0 != ".")
+                            thereIsAWinner = true;
+                        break;
+                    case 1:
+                        boolean possibility1 = true;
+                        String letterAtPos1 = placements[apfel][i];
+                        // System.out.println(letterAtPos1);  // debugging
+                        for (int banane = 0; banane <= 3; banane++) {
+                            // System.out.println("vergleich mit " + "[" + (banane + apfel) + "]" + "[" + (banane + i) + "]"); // debugging
+                            if (letterAtPos1 != placements[banane + apfel][banane + i]) {
+                                possibility1 = false;
+                                break;
+                            }
+                        }
+                        if (possibility1 && letterAtPos1 != ".")
+                            thereIsAWinner = true;
+                        break;
+                    case 2:
+                        boolean possibility2 = true;
+                        String letterAtPos2 = placements[apfel][i];
+                        // System.out.println(letterAtPos2); // debugging
+                        for (int banane = 0; banane <= 3; banane++) {
+                            // System.out.println("vergleich mit " + "[" + (banane + apfel) + "]" + "[" + banane + "]"); // debugging
+                            if (letterAtPos2 != placements[banane + apfel][banane + i]) {
+                                possibility2 = false;
+                                break;
+                            }
+                        }
+                        if (possibility2 && letterAtPos2 != ".")
+                            thereIsAWinner = true;
+                        break;
+                    case 3:
+                        boolean possibility3 = true;
+                        String letterAtPos3 = placements[apfel][i];
+                        // System.out.println(letterAtPos3); // debugging
+                        for (int banane = 0; banane <= 3; banane++) {
+                            // System.out.println("vergleich mit " + "[" + (banane + apfel) + "]" + "[" + (banane + i) + "]"); // debugging
+                            if (letterAtPos3 != placements[banane + apfel][banane + i]) {
+                                possibility3 = false;
+                                break;
+                            }
+                        }
+                        if (possibility3 && letterAtPos3 != ".")
+                            thereIsAWinner = true;
+                        break;
+                }
+            }
+        }
+        return thereIsAWinner;
+    }
+    public static boolean isDiagonalWinProofUp() {
+        boolean thereIsAWinner = false;
+        for (int apfel = 0; apfel <= 3; apfel++) { // verschiebung an der x-achse
+            // System.out.println("apfel: " + apfel);
+
+            switch (apfel) {
+                case 0:
+                    boolean possibility0 = true;
+                    String letterAtPos0 = placements[apfel][5]; // erster Wert der aktuellen zeile/ebene
+                    int counter0 = apfel;
+                    for (int banane = 5; banane >= 2; banane--) { // int banane = 4 präziser (optimierung)
+                        // System.out.println("vergleich mit " + "[" + (counter0) + "]" + "[" + (banane) + "]");
+                        if (letterAtPos0 != placements[counter0][banane]) {
+                            possibility0 = false;
+                            break;
+                        }
+                        counter0++;
+                    }
+                    if (possibility0 && letterAtPos0 != ".")
+                        thereIsAWinner = true;
+                    break;
+                case 1:
+                    boolean possibility1 = true;
+                    String letterAtPos1 = placements[apfel][5]; // erster Wert der aktuellen zeile/ebene
+                    int counter1 = apfel;
+                    for (int banane = 5; banane >= 2; banane--) { // int banane = 4 präziser (optimierung)
+                        // System.out.println("vergleich mit " + "[" + (counter1) + "]" + "[" + (banane) + "]");
+                        if (letterAtPos1 != placements[counter1][banane]) {
+                            possibility1 = false;
+                            break;
+                        }
+                        counter1++;
+                    }
+                    if (possibility1 && letterAtPos1 != ".")
+                        thereIsAWinner = true;
+                    break;
+                case 2:
+                    boolean possibility2 = true;
+                    String letterAtPos2 = placements[apfel][5]; // erster Wert der aktuellen zeile/ebene
+                    int counter2 = apfel;
+                    for (int banane = 5; banane >= 2; banane--) { // int banane = 4 präziser (optimierung)
+                        // System.out.println("vergleich mit " + "[" + (counter2) + "]" + "[" + (banane) + "]");
+                        if (letterAtPos2 != placements[counter2][banane]) {
+                            possibility2 = false;
+                            break;
+                        }
+                        counter2++;
+                    }
+                    if (possibility2 && letterAtPos2 != ".")
+                        thereIsAWinner = true;
+                    break;
+                case 3:
+                    boolean possibility3 = true;
+                    String letterAtPos3 = placements[apfel][5]; // erster Wert der aktuellen zeile/ebene
+                    int counter3 = apfel;
+                    for (int banane = 5; banane >= 2; banane--) { // int banane = 4 präziser (optimierung)
+                        // System.out.println("vergleich mit " + "[" + (counter3) + "]" + "[" + (banane) + "]");
+                        if (letterAtPos3 != placements[counter3][banane]) {
+                            possibility3 = false;
+                            break;
+                        }
+                        counter3++;
+                    }
+                    if (possibility3 && letterAtPos3 != ".")
+                        thereIsAWinner = true;
+                    break;
+                }
+
+            }
+        return thereIsAWinner;
+    }
+
+    private static String coloredText(String Color, String Text) {
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_GREEN = "\u001B[32m";
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_YELLOW = "\u001B[33m";
+
+        switch (Color) {
+            case "Green":
+                return String.format("%s%s%s", ANSI_GREEN, Text, ANSI_RESET);
+            case "Red":
+                return String.format("%s%s%s", ANSI_RED, Text, ANSI_RESET);
+            case "Yellow":
+                return String.format("%s%s%s", ANSI_YELLOW, Text, ANSI_RESET);
+        }
+        return "";
     }
 }
