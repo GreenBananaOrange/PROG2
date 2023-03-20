@@ -5,7 +5,6 @@ public class exercise1 {
     public static void ConnectFourRun() {
         Runtime();
     }
-    public static boolean gameActive = true;
     public static int roundCounter = 1;
     public static Scanner myObj = new Scanner(System.in);
     public static String[][] placements = {
