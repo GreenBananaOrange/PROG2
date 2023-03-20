@@ -20,15 +20,19 @@ public class exercise1 {
 
         while (true) { // game loop
             if (roundCounter % 2 != 0)
-                coloredText("Green", "Player X!");
+                System.out.println(coloredText("Green", "Player X!"));
             else
-                coloredText("Green", "Player O!");
+                System.out.println(coloredText("Green", "Player O!"));
             printBoard();
             if (isVerticalWinProof() || isHorizontalWinProof() || isDiagonalWinProofUp() || isDiagonalWinProofDown() || (roundCounter == 43)){
-                System.out.println("Game Over!");
+                if (roundCounter % 2 != 0)
+                    System.out.println(coloredText("Green", "Player X wins!"));
+                else
+                    System.out.println(coloredText("Green", "Player O wins!"));
+                System.out.println(coloredText("Blue", "Game Over!"));
                 break;
             }
-            System.out.print("Einwurfsposition (slot): ");
+            System.out.print("Slot: ");
             System.out.println();
             int slotInt = 0;
             try {
@@ -348,6 +352,7 @@ public class exercise1 {
     private static String coloredText(String Color, String Text) {
         String ANSI_RED = "\u001B[31m";
         String ANSI_GREEN = "\u001B[32m";
+        String ANSI_BLUE = "\u001B[34m";
         String ANSI_RESET = "\u001B[0m";
         String ANSI_YELLOW = "\u001B[33m";
 
@@ -356,6 +361,8 @@ public class exercise1 {
                 return String.format("%s%s%s", ANSI_GREEN, Text, ANSI_RESET);
             case "Red":
                 return String.format("%s%s%s", ANSI_RED, Text, ANSI_RESET);
+            case "Blue":
+                return String.format("%s%s%s", ANSI_BLUE, Text, ANSI_RESET);
             case "Yellow":
                 return String.format("%s%s%s", ANSI_YELLOW, Text, ANSI_RESET);
         }
