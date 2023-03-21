@@ -55,9 +55,9 @@ public class exercise1 {
         for (int i = 5; i >= 0; i--) {
             if (placements[usedSlot][i] == ".") {
                 if (roundCounter % 2 != 0)
-                    placements[usedSlot][i] = "O";
-                else
                     placements[usedSlot][i] = "X";
+                else
+                    placements[usedSlot][i] = "O";
                 break;
             }
             if (i == 0) {
