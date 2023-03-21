@@ -1,3 +1,13 @@
+/*
+* Gabriel Penkert, Programmieren 2, Abgabe 1
+*
+* Habe leider etwas an Redundanz im Code. Gerade mit der ConnectFourRun() und der Runtime()-Methode hätte man das
+* natürlich auch eleganter lösen können. Aber für meinen persönlichen Durchblick wollte ich das so gestalten.
+* Was die Überprüfung der die Gewinnmöglichkeiten betrifft habe ich das sicherlich sehr umständlich gelöst. Einige
+* Kommilitonen haben mir ihren Ansatz geschildert, den ich auch einfach eleganter finde. Wollte an meinem Code jatzt
+* aber kurz vor der Abgabe nicht nochmals alles umschreiben. Ich bitte um Nachsicht - dankeschön!
+* */
+
 package com.company.exercise1;
 import java.util.Scanner;
 
@@ -20,15 +30,15 @@ public class exercise1 {
 
         while (true) { // game loop
             if (roundCounter % 2 != 0)
-                System.out.println(coloredText("Green", "Player X!"));
+                System.out.println(coloredText("Green", "Player X's turn!"));
             else
-                System.out.println(coloredText("Green", "Player O!"));
+                System.out.println(coloredText("Green", "Player O's turn!"));
             printBoard();
             if (isVerticalWinProof() || isHorizontalWinProof() || isDiagonalWinProofUp() || isDiagonalWinProofDown() || (roundCounter == 43)){
                 if (roundCounter % 2 != 0)
-                    System.out.println(coloredText("Green", "Player X wins!"));
-                else
                     System.out.println(coloredText("Green", "Player O wins!"));
+                else
+                    System.out.println(coloredText("Green", "Player X wins!"));
                 System.out.println(coloredText("Blue", "Game Over!"));
                 break;
             }
