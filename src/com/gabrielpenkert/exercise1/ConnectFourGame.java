@@ -8,16 +8,16 @@
 * aber kurz vor der Abgabe nicht nochmals alles umschreiben. Ich bitte um Nachsicht - dankeschön!
 * */
 
-package com.company.exercise1;
+package com.gabrielpenkert.exercise1;
 import java.util.Scanner;
 
-public class exercise1 {
-    public static void ConnectFourRun() {
+public class ConnectFourGame {
+    public void ConnectFourRun() {
         Runtime();
     }
-    public static int roundCounter = 1;
-    public static Scanner myObj = new Scanner(System.in);
-    public static String[][] placements = {
+    public int roundCounter = 1;
+    public Scanner myObj = new Scanner(System.in);
+    public String[][] placements = {
             {".",".",".",".",".","."},
             {".",".",".",".",".","."},
             {".",".",".",".",".","."},
@@ -26,7 +26,7 @@ public class exercise1 {
             {".",".",".",".",".","."},
             {".",".",".",".",".","."}
     };
-    public static void Runtime(){
+    public void Runtime(){
 
         while (true) { // game loop
             if (roundCounter % 2 != 0)
@@ -61,7 +61,7 @@ public class exercise1 {
             }
         }
     }
-    public static void getInput(int usedSlot) { // input is set
+    public void getInput(int usedSlot) { // input is set
         for (int i = 5; i >= 0; i--) {
             if (placements[usedSlot][i] == ".") {
                 if (roundCounter % 2 != 0)
@@ -80,7 +80,7 @@ public class exercise1 {
             }
         }
     }
-    public static void printBoard() {
+    public void printBoard() {
         System.out.println("00 01 02 03 04 05 06");
         System.out.println("--------------------");
         System.out.println(placements[0][0] + "  " + placements[1][0] + "  " + placements[2][0] + "  " + placements[3][0] + "  " + placements[4][0] + "  " + placements[5][0] + "  " + placements[6][0]);
@@ -92,7 +92,7 @@ public class exercise1 {
         System.out.println("--------------------");
     }
 
-    public static boolean isHorizontalWinProof() {
+    public boolean isHorizontalWinProof() {
         boolean thereIsAWinner = false;
         for (int zeileReal = 0; zeileReal <= 5; zeileReal++) {
             for (int spalte = 0; spalte <= 3; spalte++) {
@@ -166,7 +166,7 @@ public class exercise1 {
         }
         return thereIsAWinner;
     }
-    public static boolean isVerticalWinProof() { // deutsch noch auf englisch konvertieren
+    public boolean isVerticalWinProof() { // deutsch noch auf englisch konvertieren
         boolean thereIsAWinner = false;
         for (int spalte = 0; spalte <= 6; spalte++) {
             for (int zeileReal = 0; zeileReal <= 2; zeileReal++) { // counts the real lines up to the line of index 2
@@ -212,7 +212,7 @@ public class exercise1 {
         }
         return thereIsAWinner; //...maybe
     }
-    public static boolean isDiagonalWinProofDown() {
+    public boolean isDiagonalWinProofDown() {
         boolean thereIsAWinner = false;
         for (int i = 0; i <= 2; i++) { // verschiebung an y-achse
             for (int apfel = 0; apfel <= 3; apfel++) { // verschiebung an der x-achse
@@ -287,7 +287,7 @@ public class exercise1 {
         }
         return thereIsAWinner;
     }
-    public static boolean isDiagonalWinProofUp() {
+    public boolean isDiagonalWinProofUp() {
         boolean thereIsAWinner = false;
         for (int apfel = 0; apfel <= 3; apfel++) { // verschiebung an der x-achse
             // System.out.println("apfel: " + apfel);
@@ -359,7 +359,7 @@ public class exercise1 {
         return thereIsAWinner;
     }
 
-    private static String coloredText(String Color, String Text) {
+    private String coloredText(String Color, String Text) {
         String ANSI_RED = "\u001B[31m";
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_BLUE = "\u001B[34m";
