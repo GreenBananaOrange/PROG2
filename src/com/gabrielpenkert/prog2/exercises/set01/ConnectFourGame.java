@@ -8,7 +8,7 @@
 * aber kurz vor der Abgabe nicht nochmals alles umschreiben. Ich bitte um Nachsicht - dankeschön!
 * */
 
-package com.gabrielpenkert.exercise1;
+package com.gabrielpenkert.prog2.exercises.set01;
 import java.util.Scanner;
 
 public class ConnectFourGame {

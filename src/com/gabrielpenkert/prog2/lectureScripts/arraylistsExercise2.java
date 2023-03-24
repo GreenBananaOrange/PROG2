@@ -1,4 +1,4 @@
-package com.gabrielpenkert.exercisesLive;
+package com.gabrielpenkert.prog2.lectureScripts;
 
 import java.util.ArrayList;
 
