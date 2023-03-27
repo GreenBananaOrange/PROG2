@@ -7,7 +7,7 @@ public class Filter {
         this.inputSequence = inputSequence;
     }
 
-    public boolean condition (int index) {
+    public boolean condition(int index) {
         return false;
     }
 }
@@ -23,7 +23,7 @@ class Evens extends Filter{
 }
 
 class ZapMultiplies extends Filter {
-    public int basisZahl;
+    private int basisZahl; // die Zahl, um die es geht
 
     public ZapMultiplies(Sequence inputSequence, int basisZahl) {
         super(inputSequence);
@@ -32,6 +32,6 @@ class ZapMultiplies extends Filter {
 
     @Override
     public boolean condition(int index) {
-        return index % 2 != 0;
+        return index % basisZahl != 0; // basisZahl laut Aufgabenbeispiel eine 3
     }
 }

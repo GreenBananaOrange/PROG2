@@ -17,6 +17,9 @@ public class Naturals implements Sequence{
 
     @Override
     public int nextElement(int i) {
+        if (hasNext(i))
+            return intArray[i + 1];
+        System.out.println("No next element included");
         return 0;
     }
 }
