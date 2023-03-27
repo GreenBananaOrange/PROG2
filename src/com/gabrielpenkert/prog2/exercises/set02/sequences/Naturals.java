@@ -16,7 +16,7 @@ public class Naturals implements Sequence{
     }
 
     @Override
-    public int nextElement() {
+    public int nextElement(int i) {
         return 0;
     }
 }

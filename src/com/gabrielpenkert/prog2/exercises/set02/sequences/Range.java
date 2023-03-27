@@ -13,11 +13,20 @@ public class Range implements Sequence {
 
     @Override
     public boolean hasNext(int i) {
+        try {
+            if (intArray[i + 1] >= 0 || intArray[i + 1] < 0)
+                return true;
+        } catch (Exception exception) {
+            return false;
+        }
         return false;
     }
 
     @Override
-    public int nextElement() {
+    public int nextElement(int i) {
+        if (hasNext(i))
+            return intArray[i + 1];
+        System.out.println("No next element included");
         return 0;
     }
 }

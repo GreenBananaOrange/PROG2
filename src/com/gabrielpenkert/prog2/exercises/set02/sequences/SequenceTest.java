@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class SequenceTest {
 
     public static void main(String[] args) {
-        println(new Range(3,6));
+        println(new Range(3,6)); // Intervalleingabe erforderlich
     }
 
     public static void println (Naturals instanceOfNaturals) {
@@ -23,7 +23,8 @@ public class SequenceTest {
 
         while (start != end) {
             System.out.print(range.intArray[start]);
-            System.out.print(", ");
+            if (start < end - 1)
+                System.out.print(", ");
             start++;
         }
     }
