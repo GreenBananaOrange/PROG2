@@ -4,12 +4,17 @@ public class Range implements Sequence {
     public int startOfIntervall;
     public int endOfIntervall;
 
+    public static int arrayLength = 100;
+    int[] intArray = new int[arrayLength];
+
     public Range (int start, int end) {
         this.startOfIntervall = start;
         this.endOfIntervall = end + 1;
+        for (int i = 0; i < arrayLength; i++) {
+            intArray[i] = i;
+        }
     }
 
-    int[] intArray = new int[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 
     @Override
     public boolean hasNext(int i) {
