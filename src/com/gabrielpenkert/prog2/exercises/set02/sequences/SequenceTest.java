@@ -28,4 +28,13 @@ public class SequenceTest {
             start++;
         }
     }
+
+    public static void printFilteredNumbers (Sequence sequence, Filter filter) {
+        int i = 0;
+        while (sequence.hasNext(i)) {
+            if (filter.condition(i))
+                System.out.println(i);
+            i++;
+        }
+    }
 }
