@@ -7,7 +7,7 @@ public class SequenceTest {
         int end = 20;
 
         System.out.print("Naturals: ");
-        println(new Naturals()); // , ... fehlt noch
+        println(new Naturals());
         System.out.println();
 
         //Intervallausgabe
