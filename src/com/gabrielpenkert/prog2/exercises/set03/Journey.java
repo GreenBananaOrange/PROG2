@@ -1,8 +1,16 @@
 package com.gabrielpenkert.prog2.exercises.set03;
 
-public class journey {
-    public void journey (int[] trip) {
+import java.util.ArrayList;
 
+public class Journey {
+    public ArrayList places = new ArrayList();
+
+    public ArrayList getOrte () {
+        return places;
+    }
+
+    public void addOrt (Place ort) {
+        this.places.add(ort);
     }
 
     public static double getLengthOfTwoCoordinates (int x1, int y1, int x2, int y2) {
@@ -10,6 +18,7 @@ public class journey {
         return length;
     }
 
+    /*
     public static String[] calcualteOptimalRoute (String[][] map) {
         int numberOfPlaces = 0;
         //region counts number of places
@@ -38,6 +47,8 @@ public class journey {
 
             for (int i = 0; i < numberOfPlaces; i++) {
                 // calculate the optimal route for map 1
+                int shortestX;
+                int shortestY;
             }
 
 
@@ -53,5 +64,6 @@ public class journey {
 
         return optimalRoute;
     }
+    */
     // methode implementieren, die überprüft, ob zeichen nicht null ist
 }
