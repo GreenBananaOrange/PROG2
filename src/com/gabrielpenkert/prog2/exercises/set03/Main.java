@@ -1,23 +1,89 @@
+/* Gabriel Penkert, Programmieren 2
+* Wenn man bei der TSP-Auswahl mal beispielsweise "4" (als Integer) eingibt, dann bricht das Programm nach der zweiten
+* Eingabe ab, egal welcher Wert es ist. Den Fehler habe ich nicht mehr gefunden. Wenn Du ihn findest wäre es schön,
+* wenn du mir sagen könntest, wo er ist (oder mir vielleicht einen kleinen Tipp geben könntest).
+* Ansonsten (wenn man ganz normal eine Zahl wischen 1 & 3 eingibt) funktioniert der Greedy-Algorithmus mit allen
+* drei Beispielen.
+*
+* Mit freundlichen Grüßen,
+* Gabriel
+*/
+
+
+
 package com.gabrielpenkert.prog2.exercises.set03;
 
-public class Main {
+import java.util.Scanner;
 
+public class Main {
     public static void main (String[] args) {
-        Journey tsp1 = new Journey();
-        tsp1.addOrt(new Place("A", 2, 1));
-        tsp1.addOrt(new Place("B", 1, 1));
-        tsp1.addOrt(new Place("C", 2, 2));
-        tsp1.addOrt(new Place("D", 1, 2));
-        tsp1.addOrt(new Place("E", 2, 3));
-        tsp1.addOrt(new Place("F", 1, 3));
-        System.out.println(tsp1.getOrte());
-        //System.out.println(tsp1.getOrt(2));
-        System.out.println(tsp1.getOrtName(4));
-        System.out.println(tsp1.getOrtX(4));
-        System.out.println(tsp1.getOrtY(4));
+        int input = inputGetter();
+        startTSP(input);
     }
 
-    //region auch alte sachen
+    public static int inputGetter () {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welches TSP möchten Sie (mit dem Greedy-Algorithmus) lösen lassen?");
+        System.out.print("Eingabe (1-3): ");
+        try {
+            int input = Integer.parseInt(scanner.nextLine());
+            if (input == 1 || input == 2 || input == 3)
+                return input;
+        } catch (Exception e) {
+            System.out.println("Ein Fehler ist aufgetreten.");
+            inputGetter();
+        }
+        return 0;
+    }
+    public static void startTSP (int input) {
+        if (input == 1) {
+            Journey tsp1 = new Journey();
+            tsp1.addOrt(new Place("A", 2, 1));
+            tsp1.addOrt(new Place("B", 1, 1));
+            tsp1.addOrt(new Place("C", 2, 2));
+            tsp1.addOrt(new Place("D", 1, 2));
+            tsp1.addOrt(new Place("E", 2, 3));
+            tsp1.addOrt(new Place("F", 1, 3));
+            TSP.greedyAlgorithm (tsp1);
+        } else if (input == 2) {
+            Journey tsp1 = new Journey();
+            tsp1.addOrt(new Place("A", 7, 1));
+            tsp1.addOrt(new Place("B", 6, 1));
+            tsp1.addOrt(new Place("C", 5, 1));
+            tsp1.addOrt(new Place("D", 4, 1));
+            tsp1.addOrt(new Place("E", 6, 2));
+            tsp1.addOrt(new Place("F", 5, 2));
+            tsp1.addOrt(new Place("G", 7, 4));
+            tsp1.addOrt(new Place("H", 4, 4));
+            tsp1.addOrt(new Place("I", 3, 4));
+            tsp1.addOrt(new Place("J", 2, 4));
+            tsp1.addOrt(new Place("K", 1, 4));
+            TSP.greedyAlgorithm (tsp1);
+        } else if (input == 3) {
+            Journey tsp1 = new Journey();
+            tsp1.addOrt(new Place("A", 7, 1));
+            tsp1.addOrt(new Place("B", 6, 1));
+            tsp1.addOrt(new Place("C", 5, 1));
+            tsp1.addOrt(new Place("D", 4, 1));
+            tsp1.addOrt(new Place("E", 6, 2));
+            tsp1.addOrt(new Place("F", 5, 2));
+            tsp1.addOrt(new Place("G", 7, 4));
+            tsp1.addOrt(new Place("H", 4, 4));
+            tsp1.addOrt(new Place("I", 3, 4));
+            tsp1.addOrt(new Place("J", 2, 4));
+            tsp1.addOrt(new Place("K", 1, 4));
+            tsp1.addOrt(new Place("L", 7, 5));
+            tsp1.addOrt(new Place("M", 4, 5));
+            tsp1.addOrt(new Place("N", 3, 5));
+            tsp1.addOrt(new Place("O", 2, 5));
+            TSP.greedyAlgorithm (tsp1);
+        } else {
+            System.out.println("Ein Fehler ist aufgetreten.");
+            inputGetter();
+        }
+    }
+
+    //region alte sachen - hab's davor mit normalen Arrays versucht
     public static void fillMap (String[][] coordinates) {
         if (coordinates.length == 4) {
             coordinates[1][1] = "B";
