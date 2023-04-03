@@ -11,16 +11,25 @@ public class Journey {
     }
 
     public Object getOrt (int index) {
-        /*
-        for (int i = index; i <= index; i++){
-            System.out.println("Ort: " + places.get(index));
-        }
-        */
+        System.out.println(places);
         return places.get(index);
     }
 
     public void addOrt (Place ort) {
         this.places.add(ort);
+    }
+
+    public String getOrtName(int index) {
+        Place place = (Place) places.get(index);
+        return "name: " + place.getName();
+    }
+    public String getOrtX(int index) {
+        Place place = (Place) places.get(index);
+        return "x: " + place.getX();
+    }
+    public String getOrtY(int index) {
+        Place place = (Place) places.get(index);
+        return "y: " + place.getY();
     }
 
     public static double getLengthOfTwoCoordinates (int x1, int y1, int x2, int y2) {

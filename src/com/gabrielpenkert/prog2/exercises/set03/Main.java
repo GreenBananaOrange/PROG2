@@ -11,7 +11,10 @@ public class Main {
         tsp1.addOrt(new Place("E", 2, 3));
         tsp1.addOrt(new Place("F", 1, 3));
         System.out.println(tsp1.getOrte());
-        System.out.println(tsp1.getOrt(2));
+        //System.out.println(tsp1.getOrt(2));
+        System.out.println(tsp1.getOrtName(4));
+        System.out.println(tsp1.getOrtX(4));
+        System.out.println(tsp1.getOrtY(4));
     }
 
     //region auch alte sachen
