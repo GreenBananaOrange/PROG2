@@ -1,13 +1,8 @@
 package com.gabrielpenkert.prog2.exercises.set03;
 
 public class Main {
-    //region alte sachen
-    public static String[][] coordinatesFirstMap = new String[4][5];
-    public static String[][] coordinatesSecondMap = new String[7][9];
-    //endregion
 
     public static void main (String[] args) {
-
         Journey tsp1 = new Journey();
         tsp1.addOrt(new Place("A", 2, 1));
         tsp1.addOrt(new Place("B", 1, 1));
@@ -15,19 +10,8 @@ public class Main {
         tsp1.addOrt(new Place("D", 1, 2));
         tsp1.addOrt(new Place("E", 2, 3));
         tsp1.addOrt(new Place("F", 1, 3));
-        System.out.println(tsp1.places);
-
-
-
-
-
-
-        /*
-        fillMap(coordinatesFirstMap);
-        printMap(coordinatesFirstMap);
-        System.out.println(Journey.getLengthOfTwoCoordinates(1,1,2,3));
-        Journey.calcualteOptimalRoute(coordinatesFirstMap);
-        */
+        System.out.println(tsp1.getOrte());
+        System.out.println(tsp1.getOrt(2));
     }
 
     //region auch alte sachen

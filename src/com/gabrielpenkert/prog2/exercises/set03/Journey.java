@@ -6,7 +6,17 @@ public class Journey {
     public ArrayList places = new ArrayList();
 
     public ArrayList getOrte () {
+
         return places;
+    }
+
+    public Object getOrt (int index) {
+        /*
+        for (int i = index; i <= index; i++){
+            System.out.println("Ort: " + places.get(index));
+        }
+        */
+        return places.get(index);
     }
 
     public void addOrt (Place ort) {
@@ -65,5 +75,4 @@ public class Journey {
         return optimalRoute;
     }
     */
-    // methode implementieren, die überprüft, ob zeichen nicht null ist
 }
