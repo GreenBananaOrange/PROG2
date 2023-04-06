@@ -12,47 +12,56 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.addAll(Arrays.asList("A", "B", "C", "D"));
-        System.out.println(containsDublicateByProfessorLunde(list)); // true expected
-        System.out.println(containsDublicateByProfessorLunde(list.subList(0, 4))); // from 0 to 2
+        List<Dog> list = new ArrayList<Dog>();
+
+        list.add(new Dog("Shaggy", 3));
+        list.add(new Dog("Lacy", 2));
+        list.add(new Dog("Roger", 10));
+        list.add(new Dog("Tommy", 4));
+        list.add(new Dog("Tammy", 1));
+        Collections.sort(list);
+
+        for(Dog a: list)   // printing the sorted list of names
+            System.out.print(a.getDogName() + ", ");
+        System.out.println();
+
+        // Sorts the array list using comparator
+        Collections.sort(list, new Dog());
+        System.out.println(" ");
+
+        for(Dog a: list)   // printing the sorted list of ages
+            System.out.print(a.getDogName() +": "+ a.getDogAge() + ",   ");
+
     }
 
-    private static boolean containsDublicate(List<String> list) {
-        HashSet<String> dublicates = new HashSet<>();
-        for (int i = 0; i < list.size(); i++) {
-            dublicates.add(list.get(i));
+    static class Dog implements Comparator<Dog>, Comparable<Dog> {
+        private String name;
+        private int age;
+        Dog() {
         }
-        if (dublicates.size() >= list.size())
-            return false;
-        return true;
-    }
-    private static boolean containsDublicate2(List<String> list) {
-        List<String> dublicates = new ArrayList<>();
-        for (String element : list) {
-            if (dublicates.contains(element)) {
-                System.out.println(element + " in dublicates enthalten");
-                System.out.print("Dublikat: ");
-                return true;
-            }
-            System.out.println(element + " hinzugefügt");
-            dublicates.add(element);
+
+        Dog(String name, int age) {
+            this.name = name;
+            this.age = age;
         }
-        System.out.print("Dublikat: ");
-        return false;
-    }
-    public static boolean containsDublicateByProfessorLunde (List<String> list) { // soll dublikat erkennen - nochmal
-        // mit Rufus durchgehen
-        Set<String> dublicates = new HashSet<>();
-        for (String element : list) {
-            /*
-            if (dublicates.contains(element))
-                return true;
-                dublicates.add(element);
-            */
-            if (!dublicates.add(element))
-                return true;
+
+        public String getDogName() { // getter
+            return name;
         }
-        return false;
+
+        public int getDogAge() { // getter
+            return age;
+        }
+
+        // Overriding the compareTo method
+        public int compareTo(Dog dog) {
+            return (this.name).compareTo(dog.name);
+        }
+
+        // Overriding the compare method to sort the age
+        public int compare(Dog dog1, Dog dog2) {
+            return dog1.age - dog2.age;
+        }
     }
+
 }
