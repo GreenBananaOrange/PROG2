@@ -67,4 +67,21 @@ public class Train {
             string = string + checker.data.toString() + ")";
         return string;
     }
+
+    public String getCar (int indexOfCar) {
+        try {
+            String car = null;
+            ListElement checker = head;
+            int i = 0;
+            while (i != indexOfCar) { // wenn i == indexOfCar -> lokomotive, die nicht gegettet werden soll
+                car = checker.data.toString();
+                checker = checker.next;
+                i++;
+            }
+            return car;
+        } catch (Exception e) {
+            System.out.println("Input für Getter-Methode in Train.java ungültig! ");
+        }
+        return null;
+    }
 }
