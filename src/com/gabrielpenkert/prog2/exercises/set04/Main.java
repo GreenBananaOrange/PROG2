@@ -28,11 +28,12 @@ public class Main {
         System.out.println(rioGrandeExpress.toString());
         System.out.println("Wagons von Santa Fe werden in den Rio Grande Express übernommen:");
 
-
         rioGrandeExpress.insert(santaFe.getCar(3));
         rioGrandeExpress.insert(santaFe.getCar(2));
         rioGrandeExpress.insert(santaFe.getCar(1));
-
+        System.out.println("Der gewaehlte Zug verfuegt über Wagons: " + rioGrandeExpress.hasCars(rioGrandeExpress));
+        int car = 1;
+        System.out.println("Der Wagon " + car + " hat " + rioGrandeExpress.getPassengers(rioGrandeExpress, car) + " Passagiere an Bord.");
 
         /*
         for (int i = 1; i < 3; i++) {

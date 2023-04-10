@@ -84,4 +84,24 @@ public class Train {
         }
         return null;
     }
+
+    public static boolean hasCars (Train train) {
+        if (train.getCar(1) != null && train.getCar(2) != null)
+            return true;
+        return false;
+    }
+
+    public static int getPassengers (Train train, int i) {
+        String car = train.getCar(i);
+        System.out.println(car.length());
+        System.out.println("String: " + car);
+        String string = null;
+        int index = 0;
+        while (index < car.length()) {
+            System.out.println(string);
+            string = string + String.valueOf(car.charAt(car.length() - index));
+            index++;
+        }
+        return 9;
+    }
 }
