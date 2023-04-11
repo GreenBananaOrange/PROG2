@@ -26,7 +26,7 @@ public class Train {
         head = newTrain;
     }
 
-    public ListElement insert (Object car) { // element am Anfang einfügen
+    public ListElement insert(Object car) { // element am Anfang einfügen
         ListElement newCar = new ListElement(car);
         if (head == null)
             head = newCar;
@@ -47,13 +47,6 @@ public class Train {
             previousCar.next = newCar; // previous Car pointer auf newCar, sodass newCar eingefuegt ist :)
         }
         return newCar; // System.out.println(insert(x,y) + " was inserted.");
-    }
-
-    public void remove (ListElement previousCar) { // Element danach löschen
-        if (previousCar == null && head != null) // wenn es nur ein head (Lokomotive) gibt
-            head = head.next; // Lokomotive wird durch wagon ersetzt
-        else if (previousCar != null)
-            previousCar.next = previousCar.next.next; // vorheriger Car pointet auf uebernaechsten Car - garbagecollect
     }
 
     public String toString () { // gibt ganzen Train aus
@@ -85,23 +78,53 @@ public class Train {
         return null;
     }
 
+    public ListElement getCarAsListElement (int indexOfCar) {
+        try {
+            ListElement checker = head;
+            int i = 0;
+            while (i != indexOfCar) { // wenn i == indexOfCar -> lokomotive, die nicht gegettet werden soll
+                checker = checker.next;
+                i++;
+            }
+            return checker;
+        } catch (Exception e) {
+            System.out.println("Input für Getter-Methode in Train.java ungültig! ");
+        }
+        return null;
+    }
+
+    public static int getNumOfCars (Train train) {
+        int number = -1; // Anzahl der maximalen Wagons des Zuges (-1, da die Lokomotive nicht zaehlt)
+        ListElement checker = train.head;
+        try {
+            while (checker != null || checker.next != null) {
+                number++; // Anzahl wird erhöht
+                checker = checker.next;
+            }
+        } catch (Exception e) {
+            return number;
+        }
+        return number;
+    }
+
+    /*
+    public static void removeFirst (ListElement previousCar) { // Element danach löschen
+        if (previousCar == null && head != null) // wenn es nur ein head (Lokomotive) gibt
+            head = head.next; // Lokomotive wird durch wagon ersetzt
+        else if (previousCar != null)
+            previousCar.next = previousCar.next.next; // vorheriger Car pointet auf uebernaechsten Car - garbagecollect
+    }
+    */
+
+
     public static boolean hasCars (Train train) {
         if (train.getCar(1) != null && train.getCar(2) != null)
             return true;
         return false;
     }
 
-    public static int getPassengers (Train train, int i) {
-        String car = train.getCar(i);
-        System.out.println(car.length());
-        System.out.println("String: " + car);
-        String string = null;
-        int index = 0;
-        while (index < car.length()) {
-            System.out.println(string);
-            string = string + String.valueOf(car.charAt(car.length() - index));
-            index++;
-        }
-        return 9;
+    public static int getPassengers (Train train) {
+        // methode hab ich nicht mehr geschafft
+        return 0;
     }
 }
