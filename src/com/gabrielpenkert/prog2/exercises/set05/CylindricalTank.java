@@ -27,4 +27,8 @@ public class CylindricalTank extends Tank{
     public String toString() {
         return String.format("Cylindrical Tank (r = %.2f, h = %2f)", r, h);
     }
+
+    public Tank clone() {
+        return new CylindricalTank(r, h);
+    }
 }

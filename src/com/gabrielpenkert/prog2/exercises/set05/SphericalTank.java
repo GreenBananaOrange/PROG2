@@ -25,4 +25,8 @@ public class SphericalTank extends Tank{
     public String toString() {
         return String.format("Spherical Tank (r = %.2f)", r);
     }
+
+    public Tank clone() {
+        return new SphericalTank(r);
+    }
 }

@@ -40,6 +40,14 @@ public class CompositeTank extends Tank{
     }
 
     public String toString() {
-        return String.format("Cylindrical Tank (Gesamtvolumen = %.2f, GesamtOberflaeche = %2f)", getVol(), getSur());
+        return String.format("Cylindrical Tank (Gesamtvolumen = %.2f Kubikmeter, GesamtOberflaeche = %2f Quadratmeter)", getVol(), getSur());
+    }
+
+    public CompositeTank clone() {
+        CompositeTank clonedTank = new CompositeTank();
+        for (Tank tank: allTanks) {
+            clonedTank.add(tank.clone());
+        }
+        return clonedTank;
     }
 }

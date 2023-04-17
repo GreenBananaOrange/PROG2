@@ -29,4 +29,8 @@ public class CuboidTank extends Tank{
     public String toString() {
         return String.format("Cylindrical Tank (x = %.2f, y = %2f, z = %2f)", x, y, z);
     }
+
+    public Tank clone() {
+        return new CuboidTank(x, y, z);
+    }
 }

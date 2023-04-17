@@ -15,4 +15,6 @@ public abstract class Tank {
     }
 
     public abstract String toString();
+
+    public abstract Tank clone();
 }
