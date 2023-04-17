@@ -2,6 +2,7 @@ package com.gabrielpenkert.prog2.exercises.set05;
 
 public class Main {
     public static void main (String[] args) {
+
         Tank tank1 = new CuboidTank(2, 3, 4);
         Tank tank2 = new CylindricalTank(2, 3);
         Tank tank3 = new SphericalTank(3);
@@ -20,10 +21,9 @@ public class Main {
         compositeTank2.add(tank4);
         compositeTank2.add(tank5);
         compositeTank2.add(tank6);
-        /*
+
         compositeTank2.add(tank1);
         compositeTank2.remove(tank1);
-        */
 
         System.out.println(compositeTank1.toString());
         System.out.println(compositeTank2.toString());
