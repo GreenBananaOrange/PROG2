@@ -1,4 +1,4 @@
-package com.gabrielpenkert.prog2.lectureScripts;
+package com.gabrielpenkert.prog2.training;
 import java.util.ArrayList;
 import java.util.Scanner;
 

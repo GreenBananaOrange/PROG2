@@ -1,12 +1,5 @@
 package com.gabrielpenkert;
 
-import com.gabrielpenkert.prog2.exercises.set02.sequences.Naturals;
-import com.gabrielpenkert.prog2.exercises.set02.sequences.Range;
-import com.gabrielpenkert.prog2.exercises.set02.sequences.Sequence;
-import com.gabrielpenkert.prog2.exercises.set02.sequences.SequenceTest;
-import com.gabrielpenkert.prog2.lectureScripts.arraylistsExercise2;
-import com.gabrielpenkert.prog2.exercises.set02.exercise2;
-
 import java.util.*;
 
 public class Main {

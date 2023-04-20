@@ -1,4 +1,4 @@
-package com.gabrielpenkert.prog2.lectureScripts.generics;
+package com.gabrielpenkert.prog2.training.generics;
 
 import java.util.*;
 
