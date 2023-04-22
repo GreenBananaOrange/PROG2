@@ -46,42 +46,48 @@ public class WordFrequencyCounter {
 
 
         // woerter und anzahl in Array packen
-        ArrayList<wordObject> sortedCountedWords = new ArrayList<>();
+        ArrayList<WordObject> sortedCountedWords = new ArrayList<>();
 
         for (int i = 0; i < words.size(); i++) {
-            sortedCountedWords.add(new wordObject(words.get(i), frequency.get(i)));
+            sortedCountedWords.add(new WordObject(words.get(i), frequency.get(i)));
         }
 
-        for (int i = 0; i < sortedCountedWords.size(); i++) {
-            sortedCountedWords.get(i).toString();
+        System.out.println();
+
+        int MaxValue = 0;
+        for (WordObject object : sortedCountedWords) {
+            if (object.getFrequency() > MaxValue)
+                MaxValue = object.getFrequency();
         }
 
-        Collections.sort(sortedCountedWords, new Comparator<wordObject>() {
+        for (int rank = 0; rank < sortedCountedWords.size(); rank++) {
+            for (int counter = 0; counter < sortedCountedWords.size(); counter++)
+                if (sortedCountedWords.get(counter).frequency == rank)
+                    System.out.println(sortedCountedWords.get(counter));
+        }
 
-            public int compare(wordObject o1, wordObject o2) {
-                return o1.frequency - o2.frequency;
-            }
-        });
+        System.out.println();
+        System.out.println("MaxValue: " + MaxValue);
+
     }
 
-
-
-
-    public static class wordObject {
+    public static class WordObject {
         String word;
         int frequency;
 
-        public wordObject(String word, int frequency) {
+        public WordObject(String word, int frequency) {
             this.word = word;
             this.frequency = frequency;
         }
 
-        public String toString () {
-            System.out.println(word + ": " + frequency);
-            return null;
+        public String toString () { // leider wird noch ein seltsamer zeilenumbruch erzeugt
+            return (word + ": " + frequency);
+        }
+
+        public int getFrequency() {
+            return frequency;
         }
     }
-
 
     public static int wordCounter (File input) {
         File file = input;
