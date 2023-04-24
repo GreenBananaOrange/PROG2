@@ -11,13 +11,13 @@ public class WordFrequencyCounter {
 
 
         WordFrequencyCounter counter = new WordFrequencyCounter();
-        counter.analyzeText(new File("C:/Users/penke/IdeaProjects/PROG2/src/com/gabrielpenkert/prog2/data/Song.txt"));
+        counter.analyzeText(new File("/Users/gabrielpenkert/IdeaProjects/PROG2/src/com/gabrielpenkert/prog2/data/Song.txt"));
         counter.printResults();
         System.out.println();
 
-        counter.getAllWordsCounted(new File("C:/Users/penke/IdeaProjects/PROG2/src/com/gabrielpenkert/prog2/data/Song.txt"));
+        counter.getAllWordsCounted(new File("/Users/gabrielpenkert/IdeaProjects/PROG2/src/com/gabrielpenkert/prog2/data/Song.txt"));
 
-        System.out.println("Anzahl der Wörter: "+ wordCounter(new File("C:/Users/penke/IdeaProjects/PROG2/src/com/gabrielpenkert/prog2/data/Song.txt")));
+        System.out.println("Anzahl der Wörter: "+ wordCounter(new File("/Users/gabrielpenkert/IdeaProjects/PROG2/src/com/gabrielpenkert/prog2/data/Song.txt")));
         System.out.println("Line Count: " + lineCounter);
     }
 
