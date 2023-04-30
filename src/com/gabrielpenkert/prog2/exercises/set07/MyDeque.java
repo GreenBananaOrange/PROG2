@@ -22,12 +22,16 @@ public class MyDeque<T> {
         queue.addFirst(13);
         queue.addFirst(14);
         queue.addFirst(15); // (*) wird nicht inzugefügt, da Array dann bereits voll ist
+        queue.removeFirst();
+        queue.removeFirst();
+        queue.removeFirst();
+        queue.removeFirst();
+        queue.removeFirst();
     }
 
     private T[] elements;
     private int index1;
     private int index2;
-    private int testIndex;
     private int size;
 
     public MyDeque (int capacity) {
@@ -50,16 +54,28 @@ public class MyDeque<T> {
 
     public void addFirst (T element) {
         try {
-            if (!isFull()) {
-                elements[index1] = element;
-                index1 += 1;
-                testIndex = (testIndex + 1) % elements.length;
-                System.out.println("testIndex: " + testIndex);
-                size++;
-            } else
-                System.out.println("Array ist voll! ");
+            elements[index1] = element;
+            System.out.println("index1: " + index1);
+            index1 = (index1 + 1) % (elements.length); // bei Eintrag NACH letztem Element des Arrays, wird durch MOD
+            // wieder von vorne begonnen, da der wert des Index und die Länge des Arrays zusammen 0 ergeben
+            // -> Kreislauf (somit werden allerdings bereits beschriebene Werte bei Umkreisung überschrieben)
+            size++;
         } catch (Exception e) {
             System.out.println("Ein unbekannter Fehler ist aufgetreten: " + e);
         }
+    }
+
+    public void removeFirst () {
+        if (!isEmpty()) {
+            // keine Ahnung man...
+        }
+    }
+
+    public T removeLast () {
+        index1 = (index1 + elements.length - 1) % elements.length;
+        T element = elements[index1];
+        size--;
+        System.out.println("index1 (removeL): " + index1);
+        return element;
     }
 }
