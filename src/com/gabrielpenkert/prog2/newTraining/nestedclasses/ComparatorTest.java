@@ -49,6 +49,17 @@ public class ComparatorTest {
         tiere.stream().forEach(tier -> System.out.println(tier.toString()));
         tiere.forEach(tier -> System.out.println(tier.toString()));
 
+        System.out.println("****************************");
+        tiere.stream().map(ZooTier::getHerkunft).distinct().sorted().forEach(System.out::println);
+        System.out.println("--------------");
+        tiere.stream().map(ZooTier::getHerkunft).distinct().sorted(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        }).forEach(System.out::println);
+        tiere.stream().map(ZooTier::getHerkunft).distinct().sorted().forEach(System.out::println);
+        System.out.println("****************************");
 
     }
 
@@ -75,6 +86,10 @@ public class ComparatorTest {
 
         public String toString() {
             return "Name: " + name + ", Gattung: " + gattung + ", Herkunft: " + herkunft;
+        }
+
+        public String getHerkunft() {
+            return herkunft;
         }
     }
 }
