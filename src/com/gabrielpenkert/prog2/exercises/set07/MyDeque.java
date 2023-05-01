@@ -4,24 +4,30 @@ import java.util.*;
 
 public class MyDeque<T> {
     public static void main (String[] args) {
-        MyDeque queue = new MyDeque(14); // (*)
+        MyDeque queue = new MyDeque(16); // (*)
+        System.out.println(queue.toString());
+
         queue.addFirst(1);
         queue.addFirst(2);
         queue.addFirst(3);
         queue.addFirst(4);
         queue.addFirst(5);
+        System.out.println(queue.toString());
 
         queue.addFirst(6);
         queue.addFirst(7);
         queue.addFirst(8);
         queue.addFirst(9);
         queue.addFirst(10);
+        System.out.println(queue.toString());
 
         queue.addFirst(11);
         queue.addFirst(12);
         queue.addFirst(13);
         queue.addFirst(14);
         queue.addFirst(15); // (*) wird nicht inzugefügt, da Array dann bereits voll ist
+        System.out.println(queue.toString());
+
         queue.removeFirst();
         queue.removeFirst();
         queue.removeFirst();
@@ -77,5 +83,29 @@ public class MyDeque<T> {
         size--;
         System.out.println("index1 (removeL): " + index1);
         return element;
+    }
+
+    public String toString () {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for (int i = index1 - 1; i != index2 - 1; i = (i + elements.length - 1) % elements.length) {
+            // System.out.println("ausgabe: " + ((i + elements.length - 1) % elements.length));
+            try {
+                if (elements[i] != null) {
+                    stringBuilder.append(elements[i].toString());
+                    if (i != index2 - 2)
+                        stringBuilder.append(",");
+                }
+            } catch (Exception e) {
+                System.out.println("Ein Fehler ist aufgetreten: " + e);
+            }
+        }
+        if (stringBuilder.length() == 1) {
+            for (int i = 0; i < size; i++) {
+                stringBuilder.append(elements[i] + " ");
+            }
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
     }
 }
