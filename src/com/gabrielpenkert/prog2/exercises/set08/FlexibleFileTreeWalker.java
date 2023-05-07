@@ -1,13 +1,15 @@
 package com.gabrielpenkert.prog2.exercises.set08;
 
+
 import java.io.File;
 import java.io.IOException;
+
 /**
  * Prints recursively all files which are contained in * the current directory or in sub-directories.
  * @author Reinhard Schiedermeier, Ruediger Lunde
  */
 
-public class FileTreeWalker {
+public class FlexibleFileTreeWalker {
     public static void main(String[] args) throws IOException {
         new FileTreeWalker().walk(".");
     }
@@ -25,5 +27,13 @@ public class FileTreeWalker {
 
     protected void process(File file) throws IOException {
         System.out.printf("%-100s%6d%n", file.getCanonicalPath(), file.length()); // ...wird sie hier geprintet
+    }
+
+    interface FileProcessor {
+
+        static void process(File file) {
+
+        }
+
     }
 }
