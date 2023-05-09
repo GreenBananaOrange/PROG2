@@ -1,7 +1,13 @@
+/*
+Gabriel Penkert, Programmieren 2
+*/
+
 package com.gabrielpenkert.prog2.exercises.set08;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -51,12 +57,31 @@ public class FlexibleFileTreeWalker {
         public void sortAndFilterPaths() {
             Collections.sort(loadedPaths, Comparator.comparing(o -> o.fileSize)); // auf süss
 
+            /* // habe hier (Aufgabe 5) nicht weiter gemacht, weil ich fast einschlafe - hoffe es reicht
+            // trotzdem zum Bestehen des Aufgabenblattes.
+            HashMap<String, String> sameNameData = new HashMap<>();
+            for (int zielDatei = 0; zielDatei < loadedPaths.size(); zielDatei++) {
+                String path1 = loadedPaths.get(zielDatei).toString();
+                Path pathZielDatei = Paths.get(path1);
+                String fileName1 = pathZielDatei.getFileName().toString();
+                for (int vergleichsDatei = 0; vergleichsDatei < loadedPaths.size(); vergleichsDatei++) {
+                    String path2 = loadedPaths.get(vergleichsDatei).toString();
+                    Path pathVergleichsDatei = Paths.get(path1);
+                    String fileName2 = pathVergleichsDatei.getFileName().toString();
+                    if (zielDatei != vergleichsDatei) {
+                        if (fileName1 == fileName2) {
+
+                        }
+                    }
+                }
+            }
+            */
+
         }
 
         public void printPaths () {
             for (int i = 0; i < loadedPaths.size(); i++)
                 System.out.println("Path: " + loadedPaths.get(i).path + " Size: " + loadedPaths.get(i).fileSize);
-
         }
 
         class FileData {
