@@ -2,7 +2,7 @@ package com.gabrielpenkert.prog2.exercises.set08;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Prints recursively all files which are contained in * the current directory or in sub-directories.
@@ -13,24 +13,13 @@ public class FlexibleFileTreeWalker {
     public FileProcessor fileProcessor;
 
     public static void main(String[] args) throws IOException {
-        FlexibleFileTreeWalker.walk(".");
+        // FlexibleFileTreeWalker.walk(".");
         // fileProcessor.walk(".");
         new FlexibleFileTreeWalker.LargeFileFinder();
     }
 
     public FlexibleFileTreeWalker (FileProcessor fileProcessor) {
         this.fileProcessor = fileProcessor;
-    }
-
-    public static void walk(String pathname) throws IOException { // hier passiert das wesentliche
-        File[] files = new File(pathname).listFiles(); // alle Dateipfade werden geladen und in Filearray gelegt
-        if (files != null) { // unnötig?
-            for (File file : files) // fuer alle Dateien im Array
-                if (file.isDirectory()) // Wenn Ziel nur ein Verzeichnis darstellt, dann:
-                    walk(file.getCanonicalPath());
-                else // Wenn Ziel tatsaechlich eine Datei ist, dann...
-                    FileProcessor.process(file);
-        }
     }
 
     interface FileProcessor {
@@ -40,15 +29,44 @@ public class FlexibleFileTreeWalker {
     }
 
     public static class LargeFileFinder {
-        HashMap<String, Integer> sortedPaths = new HashMap<>();
-        int bitCounter = -1;
+        List<FileData> loadedPaths = new ArrayList<FileData>();
 
-        public LargeFileFinder () {
+        public LargeFileFinder () throws IOException {
+            loadPaths(".");
+            sortAndFilterPaths();
+            printPaths();
+        }
+
+        public void loadPaths (String pathname) throws IOException {
+            File[] files = new File(pathname).listFiles();
+            if (files != null) {
+                for (File file : files)
+                    if (file.isDirectory())
+                        loadPaths(file.getCanonicalPath());
+                    else
+                        loadedPaths.add(new FileData(file.length(), file.getCanonicalPath()));
+            }
+        }
+
+        public void sortAndFilterPaths() {
+            Collections.sort(loadedPaths, Comparator.comparing(o -> o.fileSize)); // auf süss
 
         }
 
-        public void addElement (String path, int sizeOfFile) {
-            sortedPaths.put(path, sizeOfFile);
+        public void printPaths () {
+            for (int i = 0; i < loadedPaths.size(); i++)
+                System.out.println("Path: " + loadedPaths.get(i).path + " Size: " + loadedPaths.get(i).fileSize);
+
+        }
+
+        class FileData {
+            public Long fileSize;
+            public String path;
+
+            public FileData (Long fileSize, String path) {
+                this.fileSize = fileSize;
+                this.path = path;
+            }
         }
     }
 }
